@@ -159,12 +159,17 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 .langbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:14px;padding-bottom:4px;position:relative;z-index:5}
 .langbar a{font:700 13px Rubik,sans-serif;letter-spacing:.04em;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--ink,#fff);text-decoration:none;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
 .langbar a.on{background:var(--paper,#f4efe6);color:var(--on-paper,#111)}
+.langbar a{display:inline-flex;align-items:center;gap:6px;direction:ltr}
+.langbar .fl{font-size:17px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+html[dir=rtl] body{direction:rtl}
+html[dir=rtl] .prompt pre,html[dir=rtl] .code b{direction:ltr;text-align:left}
+html[dir=rtl] .code{text-align:right}
 .langnote{margin:0 0 26px}
 </style></head>
 <body>
 <div class="atmo"></div>
 <header class="bar"><div class="wrap"><a class="me" href="https://www.instagram.com/leviorel/" rel="noopener" target="_blank"><img alt="Orel Levi" src="../media/avatar.jpg"/><span>Orel Levi<small>@leviorel · Criador de conteúdo com IA</small></span></a>
-<a class="btn btn-primary" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">Teste o Kolbo<span class="hide-s"> · 50% off</span></a></div></header><div class="langbar wrap"><a class="" href="../" lang="en">EN</a><a class="on" href="../pt/" lang="pt">PT</a><a class="" href="../es/" lang="es">ES</a><a class="" href="../fr/" lang="fr">FR</a><a class="" href="../it/" lang="it">IT</a><a class="" href="../ru/" lang="ru">RU</a></div>
+<a class="btn btn-primary" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">Teste o Kolbo<span class="hide-s"> · 50% off</span></a></div></header><div class="langbar wrap"><a class="" href="../" lang="en"><span class="fl">🇬🇧</span>EN</a><a class="on" href="../pt/" lang="pt"><span class="fl">🇧🇷</span>PT</a><a class="" href="../es/" lang="es"><span class="fl">🇪🇸</span>ES</a><a class="" href="../fr/" lang="fr"><span class="fl">🇫🇷</span>FR</a><a class="" href="../it/" lang="it"><span class="fl">🇮🇹</span>IT</a><a class="" href="../ru/" lang="ru"><span class="fl">🇷🇺</span>RU</a><a class="" href="../he/" lang="he"><span class="fl">🇮🇱</span>עב</a></div>
 <section class="hero"><div class="wrap">
 <div>
 <span class="eyebrow">Workflow grátis · The Last Ride</span>

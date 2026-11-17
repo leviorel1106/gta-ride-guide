@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>The Last Ride · איך עשיתי את זה ב-AI</title>
+<meta content="ככה עשיתי את The Last Ride, סרט פרידה מ-GTA ב-AI: נסיעה אחרונה עם מייקל, פרנקלין וטרבור לפני GTA VI. מההתחלה ועד הסוף בקולבו. כל הפרומפטים מוכנים להעתקה." name="description"/>
+<meta content="The Last Ride · איך עשיתי את זה ב-AI" property="og:title"/>
+<meta content="ככה עשיתי את The Last Ride, סרט פרידה מ-GTA ב-AI: נסיעה אחרונה עם מייקל, פרנקלין וטרבור לפני GTA VI. מההתחלה ועד הסוף בקולבו. כל הפרומפטים מוכנים להעתקה." property="og:description"/>
+<meta content="../media/poster_ride.jpg" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0c0d10; --bg2:#101114; --surface:#141619; --surface2:#1b1d21; --surface3:#24272c;
+  --ink:#f5f5f5; --ink2:#d3d6da; --muted:#b7bbc0; --line:#26282c; --line2:#3b3d40; --paper:#f2eee6; --on-paper:#111418;
+  --v1:#7a16e0; --v2:#a16cff; --cy:#2bd7d6; --amber:#F5C20C; --red:#B81418;
+  --grad:linear-gradient(97deg,#7a16e0,#008786);
+  --grad-text:linear-gradient(97deg,#a16cff,#2bd7d6);
+  --r:16px; --r-lg:24px;
+  --gut:max(18px,env(safe-area-inset-left,0px)); --gutr:max(18px,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Rubik,"Segoe UI",Arial,sans-serif;font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:rgba(161,108,255,.45)}
+.atmo{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.atmo::before{content:"";position:absolute;width:90vmax;height:90vmax;top:-45vmax;right:-30vmax;background:radial-gradient(closest-side,rgba(122,22,224,.22),transparent 70%)}
+.atmo::after{content:"";position:absolute;width:70vmax;height:70vmax;bottom:-40vmax;left:-25vmax;background:radial-gradient(closest-side,rgba(0,135,134,.16),transparent 70%)}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:var(--gut);padding-right:var(--gutr)}
+.narrow{max-width:820px}
+.grad-text{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--grad)}
+
+/* bar */
+.bar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:62px}
+.me{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:15px}
+.me img{width:36px;height:36px;border-radius:50%;box-shadow:0 0 0 2px var(--v2)}
+.me small{display:block;font-weight:500;color:var(--muted);font-size:12px;line-height:1.2}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:700 17px/1 Rubik,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,.copy:focus-visible,.code:focus-visible{outline:3px solid var(--cy);outline-offset:3px}
+.btn-primary{background:var(--paper);color:var(--on-paper);box-shadow:0 14px 40px -12px rgba(242,238,230,.35)}
+.btn-grad{background:var(--grad);color:#fff;box-shadow:0 0 0 1px rgba(161,108,255,.35),0 18px 50px -12px rgba(122,22,224,.6)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:0 0 0 1.5px var(--line2) inset}
+.bar .btn{min-height:42px;padding:0 18px;font-size:15px}
+
+/* hero */
+.hero{padding:clamp(34px,6vw,80px) 0 clamp(30px,5vw,60px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,64px);align-items:center}
+h1{font-size:clamp(42px,7vw,86px);line-height:.95;font-weight:900;letter-spacing:-.03em;margin:18px 0 20px;text-wrap:balance}
+.lead{font-size:clamp(19px,2vw,22px);color:var(--ink2);max-width:40ch;margin:0 0 28px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.phone{position:relative;justify-self:center;width:min(100%,340px);aspect-ratio:9/16;border-radius:34px;padding:10px;background:linear-gradient(160deg,#2a2c31,#0f1013);box-shadow:0 0 0 1px var(--line2),0 40px 90px -30px rgba(122,22,224,.55)}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:26px;background:#000}
+.phone .sound{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);min-height:40px;padding:0 16px;font-size:14px;background:rgba(12,13,16,.72);color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--surface);box-shadow:0 0 0 1px var(--line2) inset;font-size:14px;color:var(--ink2);font-weight:500}
+.badge b{color:var(--ink)}
+
+/* sections */
+.sec{padding:clamp(56px,8vw,104px) 0 0}
+h2{font-size:clamp(32px,4.6vw,54px);line-height:1.02;font-weight:900;letter-spacing:-.025em;margin:14px 0 16px;text-wrap:balance}
+h3{font-size:clamp(22px,2.4vw,28px);line-height:1.15;font-weight:800;margin:0 0 10px}
+p{margin:0 0 16px}
+.muted{color:var(--muted)}
+.tldr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.tldr div{padding:20px;border-radius:var(--r);background:var(--surface);box-shadow:0 0 0 1px var(--line) inset}
+.tldr b{display:block;font-size:30px;font-weight:900;line-height:1;margin-bottom:8px}
+.tldr span{color:var(--muted);font-size:15px;line-height:1.45;display:block}
+
+/* code strip (Kolbo offer) */
+.offer{margin-top:clamp(40px,6vw,64px);border-radius:var(--r-lg);padding:clamp(22px,3vw,34px);position:relative;overflow:hidden;
+  background:linear-gradient(120deg,rgba(122,22,224,.28),rgba(0,135,134,.2)),var(--surface);box-shadow:0 0 0 1px rgba(161,108,255,.35) inset}
+.offer .row{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.offer h3{margin:0 0 4px}
+.codes{display:flex;flex-wrap:wrap;gap:10px}
+.code{display:inline-flex;align-items:center;justify-content:space-between;min-width:280px;gap:12px;text-align:left;min-height:52px;padding:0 8px 0 18px;border-radius:14px;border:0;cursor:pointer;background:var(--bg);color:var(--ink);box-shadow:0 0 0 1.5px var(--line2) inset;font:600 15px Rubik,sans-serif}
+.code b{font-family:"JetBrains Mono",monospace;font-size:17px;letter-spacing:.04em}
+.code i{font-style:normal;font-size:13px;color:var(--muted)}
+.code .pill{background:var(--paper);color:var(--on-paper);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700}
+.fine{font-size:14px;color:var(--muted);margin:14px 0 0}
+
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+.rule{padding:24px;border-radius:var(--r-lg);background:var(--surface);box-shadow:0 0 0 1px var(--line) inset;position:relative;overflow:hidden}
+.rule .n{font-size:64px;font-weight:900;line-height:.9;margin-bottom:12px}
+.rule p{color:var(--ink2);font-size:16px;margin:0}
+
+/* steps */
+.step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start;padding:clamp(34px,5vw,56px) 0;border-top:1px solid var(--line)}
+.step:first-of-type{border-top:0}
+.step .num{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--grad);font-weight:900;font-size:19px;margin-bottom:14px}
+.tool{display:inline-flex;align-items:center;gap:8px;margin:0 0 14px;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.04em;background:rgba(43,215,214,.1);color:var(--cy);box-shadow:0 0 0 1px rgba(43,215,214,.35) inset}
+.step ul{margin:0 0 16px;padding-left:20px;color:var(--ink2)}
+.step li{margin:0 0 6px}
+.shots{display:grid;gap:10px}
+.shots.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.shots.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.shots figure{margin:0}
+.shots img{width:100%;border-radius:14px;box-shadow:0 0 0 1px var(--line2)}
+.shots .tall img{aspect-ratio:9/16;object-fit:cover}
+.shots figcaption{font-size:14px;color:var(--muted);margin-top:6px;line-height:1.4}
+
+/* prompt */
+.prompt{position:relative;margin:14px 0 0;border-radius:var(--r);background:#08090b;box-shadow:0 0 0 1px var(--line2) inset;overflow:hidden}
+.prompt-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 10px 10px 16px;border-bottom:1px solid var(--line);background:var(--surface)}
+.prompt-h span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.prompt pre{margin:0;padding:16px;max-height:300px;overflow:auto;white-space:pre-wrap;word-break:break-word;font:13.5px/1.6 "JetBrains Mono",monospace;color:#e6e7ea}
+.prompt.long pre{max-height:420px}
+.copy{min-height:40px;padding:0 16px;border-radius:999px;border:0;cursor:pointer;background:var(--paper);color:var(--on-paper);font:700 14px Rubik,sans-serif}
+.copy.done{background:var(--cy)}
+.note{margin-top:14px;padding:14px 16px;border-radius:14px;background:rgba(245,194,12,.08);box-shadow:0 0 0 1px rgba(245,194,12,.3) inset;font-size:15px;color:var(--ink2)}
+.note b{color:var(--amber)}
+
+/* mistakes */
+.miss{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+.miss div{padding:22px;border-radius:var(--r-lg);background:var(--surface);box-shadow:0 0 0 1px var(--line) inset}
+.miss b{display:block;font-size:19px;margin-bottom:6px}
+.miss .x{color:#ff7a7a;font-weight:800}
+.miss .ok{color:var(--cy);font-weight:800}
+.miss p{margin:0 0 10px;font-size:16px;color:var(--ink2)}
+
+/* final */
+.final{margin:clamp(64px,9vw,120px) 0 0;padding:clamp(40px,6vw,72px) 0;background:radial-gradient(80% 90% at 50% 0%,rgba(122,22,224,.32),transparent 70%),var(--bg2);border-top:1px solid var(--line)}
+.final .wrap{text-align:center}
+.final h2{font-size:clamp(36px,5.4vw,66px)}
+.final .lead{margin-inline:auto;max-width:46ch}
+.final .codes{justify-content:center;margin:26px 0 8px}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:900px;margin:28px auto 0;text-align:left}
+.steps3 div{padding:18px;border-radius:var(--r);background:var(--surface);box-shadow:0 0 0 1px var(--line) inset;font-size:16px;color:var(--ink2)}
+.steps3 b{display:block;color:var(--ink);font-size:17px;margin-bottom:4px}
+footer{padding:34px 0 60px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(120px);background:var(--paper);color:var(--on-paper);padding:12px 20px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .25s;z-index:80}
+.toast.on{transform:translateX(-50%) translateY(0)}
+
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .phone{width:min(78vw,320px)}
+  .tldr{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rules,.miss,.steps3{grid-template-columns:minmax(0,1fr)}
+  .step{grid-template-columns:minmax(0,1fr)}
+  .bar .hide-s{display:none}
+}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+.shots.p34 img{aspect-ratio:3/4;object-fit:cover}
+</style>
+<style>
+.langbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:14px;padding-bottom:4px;position:relative;z-index:5}
+.langbar a{font:700 13px Rubik,sans-serif;letter-spacing:.04em;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--ink,#fff);text-decoration:none;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
+.langbar a.on{background:var(--paper,#f4efe6);color:var(--on-paper,#111)}
+.langbar a{display:inline-flex;align-items:center;gap:6px;direction:ltr}
+.langbar .fl{font-size:17px;line-height:1;font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif}
+html[dir=rtl] body{direction:rtl}
+html[dir=rtl] .prompt pre,html[dir=rtl] .code b{direction:ltr;text-align:left}
+html[dir=rtl] .code{text-align:right}
+.langnote{margin:0 0 26px}
+</style></head>
+<body>
+<div class="atmo"></div>
+<header class="bar"><div class="wrap">
+<a class="me" href="https://www.instagram.com/leviorel/" rel="noopener" target="_blank"><img alt="אוראל לוי" src="../media/avatar.jpg"/><span>אוראל לוי<small>@leviorel · יוצר תוכן AI</small></span></a>
+<a class="btn btn-primary" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">נסו את קולבו<span class="hide-s"> · 50% הנחה</span></a>
+</div></header><div class="langbar wrap"><a class="" href="../" lang="en"><span class="fl">🇬🇧</span>EN</a><a class="" href="../pt/" lang="pt"><span class="fl">🇧🇷</span>PT</a><a class="" href="../es/" lang="es"><span class="fl">🇪🇸</span>ES</a><a class="" href="../fr/" lang="fr"><span class="fl">🇫🇷</span>FR</a><a class="" href="../it/" lang="it"><span class="fl">🇮🇹</span>IT</a><a class="" href="../ru/" lang="ru"><span class="fl">🇷🇺</span>RU</a><a class="on" href="../he/" lang="he"><span class="fl">🇮🇱</span>עב</a></div>
+<section class="hero"><div class="wrap">
+<div>
+<span class="eyebrow">מדריך חינמי · The Last Ride</span>
+<h1>נסיעה אחרונה<br/><span class="grad-text">לפני GTA VI.</span></h1>
+<p class="lead">גיימר שכבר גדל נוסע פעם אחרונה עם מייקל, פרנקלין וטרבור. בצומת הם פונים שמאלה, הוא ממשיך ישר, ובמראה התינוק שלו ישן. ככה בדיוק עשיתי את זה, הכל בקולבו, וכל פרומפט מוכן להעתקה.</p>
+<div class="cta-row"><a class="btn btn-grad" href="#steps">תראו לי את השלבים</a>
+<a class="btn btn-ghost" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">פתחו את קולבו</a></div>
+<div class="badges"><span class="badge">סרט של <b>20 שניות</b></span><span class="badge"><b>2</b> פרומפטים</span><span class="badge"><b>4:3</b> כמו סרט אמיתי</span><span class="badge">נוצר עם <b>Kolbo AI</b></span></div>
+</div>
+<div class="phone"><video autoplay="" id="ep" loop="" muted="" playsinline="" poster="../media/poster_ride.jpg" preload="metadata" src="../media/ride916.mp4"></video>
+<button class="btn sound" id="snd" type="button">לחצו לסאונד</button></div>
+</div></section>
+<section class="sec"><div class="wrap">
+<span class="eyebrow">הגרסה הקצרה</span>
+<h2>שתי ריצות קצרות, <span class="grad-text">כביש אחד, שקיעה אחת.</span></h2>
+<p class="lead" style="max-width:60ch">הסרט הוא שתי ריצות של Seedance 2.5, 10 שניות כל אחת: הנסיעה, ואז הפרידה והתינוק. לשתיהן יש אותם בלוקים נעולים, אז הכביש, האור והפנים מתאימים גם אחרי הקאט.</p>
+<div class="tldr"><div><b>01</b><span>הופכים את הדמויות לשחקנים אמיתיים</span></div><div><b>02</b><span>דפי דמות לחבר'ה ולגיבור שלכם</span></div><div><b>03</b><span>כביש אחד ריק</span></div><div><b>04</b><span>שתי ריצות, Full Quality, הסיום</span></div></div>
+<div class="offer">
+<div class="row">
+<div><h3>הכל פה רץ על קולבו.</h3><p class="muted" style="margin:0">GPT Image, Nano Banana Pro ו-Seedance 2.5 במקום אחד, עם Full Quality ל-1080p הסופי. תתחילו עם ההנחה שלי:</p></div>
+<div class="codes"><button class="code" data-copytext="ORELLEVI50" type="button"><span><b>ORELLEVI50</b><br/><i>50% הנחה על החודש הראשון</i></span><span class="pill">העתיקו</span></button>
+<button class="code" data-copytext="ORELLEVI30" type="button"><span><b>ORELLEVI30</b><br/><i>30% הנחה ל-3 חודשים</i></span><span class="pill">העתיקו</span></button></div>
+</div>
+<p class="fine">הקודים עובדים על הרכישה הראשונה של מנוי חודשי. תירשמו דרך <a href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">הלינק שלי</a>, תאשרו את העוגיות באתר של קולבו ותכניסו את הקוד בתשלום.</p>
+</div>
+</div></section>
+<section class="sec"><div class="wrap">
+<span class="eyebrow">לפני שמתחילים</span>
+<h2>שלושה כללים <span class="grad-text">שעשו את ההבדל.</span></h2>
+<div class="rules"><div class="rule"><div class="n grad-text">1</div><h3>הרגש הוא 13 שנים</h3><p>התחלנו לשחק כילדים. היום לחלק מאיתנו יש ילדים משלנו. המשפט הזה הוא כל הסרט, בלי מילה אחת של דיאלוג.</p></div><div class="rule"><div class="n grad-text">2</div><h3>תשאירו את הסיפור פשוט</h3><p>בגרסה הראשונה שלי היו נער ומראה צד. אף אחד לא הבין. נהג אחד, שלושה חברים, תינוק אחד במראה. כל אחד קולט את זה בצפייה אחת.</p></div><div class="rule"><div class="n grad-text">3</div><h3>בלוקים נעולים, ריצות קצרות</h3><p>תחלקו את הסרט לריצות קצרות ותדביקו בכל אחת את אותם בלוקים: לוק, כללי רציפות, קאסט, לוקיישן, מהירות, אודיו, ממה להימנע. ככה שני החלקים נשארים סרט אחד.</p></div></div>
+</div></section>
+<section class="sec" id="steps"><div class="wrap">
+<span class="eyebrow">שלב אחרי שלב</span>
+<h2>כל התהליך, <span class="grad-text">בקולבו.</span></h2>
+<div class="note langnote"><b>💡</b> הפרומפטים נשארים באנגלית: מעתיקים ומדביקים אותם כמו שהם, כי ככה המודלים מבינים הכי טוב.</div><div class="step">
+<div>
+<span class="num">1</span><span class="tool">GPT IMAGE · בקולבו</span><h3>הופכים את הדמויות לשחקנים אמיתיים</h3>
+<p>תעלו צילום מסך של כל דמות מהמשחק ותבקשו צילום אמיתי של אותו בן אדם, כאילו ליהקו שחקן לסרט. תתארו את הפנים, השיער והבגדים שאתם רוצים לשמור, ותגידו לו למחוק כל זכר מהמשחק.</p><div class="prompt"><div class="prompt-h"><span>דמות מהמשחק ← שחקן אמיתי</span><button class="copy" data-copy="p-cast" type="button">העתיקו</button></div><pre id="p-cast">Image 1 shows Franklin Clinton, the video game character from GTA V. Create a genuine photograph of him as a REAL living man, as if a real actor were cast for a live-action film, instantly recognisable as Franklin as he was in GTA V (2013): about 25 years old, slim athletic build, very short black hair, short neat beard, calm confident eyes. Wardrobe: a dark blue short-sleeve button shirt over a white long-sleeve tee, dark jeans. Expression: a relaxed cool half-smile. Remove every trace of the game model: no polygon planes, no painted texture, no plastic skin, no CGI. Real pores, real eyelids, real hairline, slight skin imperfections, subtle asymmetry, unretouched skin. Half-body portrait, 3:4, standing on a dry canyon road in the Los Angeles hills at golden-hour sunset, warm low backlight from the right, shot on ARRI Alexa, 50mm, f/2.8, Kodak Portra 400 look, natural colors, soft bokeh. Photoreal, no text, no logos.</pre></div><div class="note"><b>טיפ:</b> תשאירו אותם חמודים. הטרבור הראשון שלי יצא כמו נבל מסרט אימה. "Lovable, a little crazy, never menacing" סידר את זה.</div>
+</div>
+<div class="shots c2 p34"><figure><img alt="פרנקלין במשחק" loading="lazy" src="../media/game_franklin.jpg"/><figcaption>במשחק</figcaption></figure><figure><img alt="פרנקלין כבן אדם אמיתי" loading="lazy" src="../media/real_franklin.jpg"/><figcaption>כשחקן אמיתי</figcaption></figure><figure><img alt="טרבור במשחק" loading="lazy" src="../media/game_trevor.jpg"/><figcaption>במשחק</figcaption></figure><figure><img alt="טרבור כבן אדם אמיתי" loading="lazy" src="../media/real_trevor.jpg"/><figcaption>כשחקן אמיתי</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">2</span><span class="tool">NANO BANANA PRO · בקולבו</span><h3>דפי דמות לחבר'ה ולגיבור שלכם</h3>
+<p>תנו את התמונה שבחרתם כרפרנס ותבקשו דף של אותו בן אדם מכמה זוויות. את הדף הזה מודל הווידאו קורא, והוא מה ששומר על אותן פנים בכל שוט.</p><div class="prompt"><div class="prompt-h"><span>פרומפט לדף דמות (16:9, ארבעה פאנלים)</span><button class="copy" data-copy="p-sheet" type="button">העתיקו</button></div><pre id="p-sheet">CHARACTER SHEET, 16:9, four panels side by side separated by thin white gutters, on a clean light warm-grey seamless studio background: (1) a tight head-and-shoulders portrait facing the lens, (2) head-and-shoulders three-quarter view turned to the left, (3) head-and-shoulders side profile facing left, (4) a full-body standing shot head to shoes, relaxed. The SAME person in all four panels: identical face, hair, skin and outfit. Expression in every panel: relaxed and friendly, a light natural smile with the mouth closed, warm open eyes. No text, no labels, no watermark. Images 1 and 2 show the SAME man: use them for his exact identity, the same face, the same short dark-brown hair, the same warm brown eyes, the same light stubble and the same smile lines. He is 30 years old. Wardrobe: a plain heather-grey crew-neck t-shirt, dark blue jeans, grey sneakers, a simple gold wedding ring. He is a likeable, healthy, normal, good-looking-in-an-everyday-way person: rested eyes, NO dark circles, NO tired or gloomy look, NO rough or criminal vibe, clean and tidy. Unretouched skin exactly as the camera sees it: visible pores, enlarged pores on the nose, fine lines, uneven skin tone with faint redness on the cheeks, oily shine on the forehead, stray eyebrow hairs, baby hairs, real asymmetry between the two sides of the face. No skin smoothing, no beauty filter, no plastic or waxy skin, no symmetrical "AI face", not a render, not CGI. Light: one large soft key light from the front-left at eye level plus a soft fill, even and flattering but real, true natural skin colours, no orange tint, no golden glow, no dramatic shadows. Shot on a full-frame camera, 85mm lens at f/5.6, real photograph, crisp, natural colours. NOT a stock photo, NOT retouched, NOT a 3D render, NOT CGI. EYEBROWS: two full, continuous, natural eyebrows on every person; NO scar through an eyebrow, NO gap, NO notch, NO shaved slit, NO bald patch in the brow. TEETH: normal, straight, healthy teeth on every person; NO crooked teeth, NO chipped tooth, NO gap tooth, NO missing tooth, NO yellowed teeth. Avoid: crooked teeth, chipped or missing teeth, eyebrow scar, eyebrow slit, gap in the eyebrow, extra fingers, duplicate faces, text, logos, blur on the face, sunglasses, perfect teeth, perfect symmetry, airbrushed skin, fashion-model bone structure, HDR glow.</pre></div><p style="margin-top:16px">הגיבור שלכם הוא בחור רגיל ונחמד. תבקשו עור אמיתי ופנים חביבות, אחרת המודל עושה אותו עייף וקודר.</p>
+</div>
+<div class="shots"><figure><img alt="דף הדמות של האבא" loading="lazy" src="../media/sheet_dad.jpg"/><figcaption>הגיבור שלכם</figcaption></figure><figure><img alt="דף דמות של מייקל" loading="lazy" src="../media/sheet_michael.jpg"/><figcaption>אותו בן אדם בכל פריים. זה כל העניין.</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">3</span><span class="tool">GPT IMAGE · בקולבו</span><h3>כביש אחד ריק</h3>
+<p>תמונה אחת של הכביש בלי אף אחד עליו, באור המדויק שאתם רוצים: שעת הזהב בגבעות של הקניון. המכוניות, האופנוע, הג'יפ וכיסא התינוק הם מילים בפרומפט, לא עוד תמונות.</p><div class="prompt"><div class="prompt-h"><span>פרומפט ללוקיישן</span><button class="copy" data-copy="p-loc" type="button">העתיקו</button></div><pre id="p-loc">Empty location photograph, no people, no cars. A two-lane winding asphalt road through dry golden hills in the Los Angeles canyons, faded yellow center lines, palm trees and power poles, the city skyline faint in the haze. Golden hour on a dry canyon road in the Los Angeles hills, low warm sun, dust in the air catching the light. Eye-level from the road, 24mm. Look: a frame from a big-budget Hollywood feature, shot on ARRI Alexa 65, fine 35mm film grain, natural colors, real textures, no retouching. No text, no logos, no watermark.</pre></div>
+</div>
+<div class="shots"><figure><img alt="כביש קניון ריק בשעת הזהב" loading="lazy" src="../media/loc_road.jpg"/><figcaption>הלוקיישן, ריק</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">4</span><span class="tool">SEEDANCE 2.5 · בקולבו</span><h3>שתי ריצות עם אותם בלוקים נעולים</h3>
+<p>שתי ריצות של Seedance 2.5, 10 שניות כל אחת, 4:3. כל פרומפט מתחיל באותם בלוקים, ואז הולך שוט אחרי שוט. בלוק הרציפות אומר בדיוק מי נוהג באיזה רכב, באיזה נתיב, ואיזה חלון פתוח.</p><div class="prompt long"><div class="prompt-h"><span>חלק 1 · הנסיעה (4:3, 10 שניות)</span><button class="copy" data-copy="p-a" type="button">העתיקו</button></div><pre id="p-a">VIDEO A, "The ride": 6 shots, 10 seconds, 4:3.
+REFERENCES: @Image1 = the father, @Image2 = Michael, @Image3 = Franklin, @Image4 = Trevor (identity sheets: use them only for faces, hair and clothes; never render a sheet, a grey studio background or a second copy of anyone). @Image5 = the canyon road (place and light only).
+GLOBAL LOOK: photoreal live-action feature film, 4:3, 24 fps real time. ARRI Alexa Mini, spherical primes, Kodak Portra 400 colour, fine film grain. Golden hour in the Los Angeles canyon hills: low warm sun behind the convoy as the key, warm bounce from the dry grass as the fill, a bright rim of light on hair and dust. Palette: warm gold, dusty amber, sky blue, the white of the convertible, the red of the jeep. Real skin with pores and a little sweat, no beauty filter, no CGI, no game look.
+CONTINUITY BIBLE (never changes): one two-lane canyon road, the convoy drives AWAY from the camera's left toward the right of the frame in every side shot. The father drives a white 1962 convertible, top down, red-brown leather seats, in the RIGHT lane; he sits on the LEFT side of his car, behind the wheel, alone in the front. Michael drives a black modern luxury sedan in the LEFT lane, exactly alongside the convertible; the sedan's front PASSENGER window, the one facing the father, is FULLY ROLLED DOWN, Michael sits in the sedan's driver seat and looks across through that open window; his hands always stay inside his own car. Franklin rides a dark green touring motorcycle and passes on the left. Trevor drives a faded red open-top 1980s jeep with a roll bar about 15 metres ahead: he SITS in the driver seat behind the steering wheel the whole time, his left hand on the wheel; he never stands up and the jeep never moves without him at the wheel. ONE PERSON PER VEHICLE: Trevor is ALONE in his jeep, seated at the wheel (nobody in the passenger seat or in the back), Michael is ALONE in his sedan, Franklin rides ALONE, the father is the only adult in the convertible. Eyelines: the father looks LEFT to Michael and Franklin, AHEAD to Trevor. The convertible has a normal interior rear-view mirror at the top centre of the windscreen frame, angled to show the back seat. THE BACK SEAT OF THE CONVERTIBLE IS NEVER IN FRAME IN THIS VIDEO.
+CAST WARDROBE: @Image1 the father, 30, short dark-brown hair, warm brown eyes, light stubble, smile lines, a likeable normal guy, plain heather-grey t-shirt, gold wedding ring. @Image2 Michael, late 40s, dark hair combed back with grey temples, navy suit jacket open over a white open-collared shirt. @Image3 Franklin, about 25, very short black hair, short neat beard, dark blue short-sleeve button shirt over a white long-sleeve tee, thin gold chain. @Image4 Trevor, about 45, balding with messy dark hair on the sides, sunburnt, dotted CUT HERE neck tattoo, dirty off-white V-neck; lovable, never menacing.
+LOCATION: @Image5, a winding two-lane canyon road through dry golden hills, palm trees and power poles, the city skyline faint in the haze. No other place.
+SPEED: everyone drives at a steady 50 km/h, real time, no slow motion. The camera only tracks smoothly alongside or holds; one simple action per shot.
+
+SHOT BY SHOT:
+[0:00-0:01.5] SHOT 1, close-up of @Image1 the father behind the wheel, side view from the passenger side, chest up. He is already grinning in disbelief at something on his left; the grin breaks into a laugh.
+[0:01.5-0:03] SHOT 2, medium from the road, the camera tracking backwards in front of the motorcycle. CUT. @Image3 Franklin on the green motorcycle passes the convertible on the left and gives a relaxed two-finger salute.
+[0:03-0:05] SHOT 3, medium two-shot from the right side of the convertible looking across the father to the sedan, tracking. CUT. Through the fully open passenger window of the sedan, @Image2 Michael, at his own steering wheel, raises his right hand inside his car and waves; the father laughs and waves back with his left hand.
+[0:05-0:06.5] SHOT 4, wide from behind the jeep, tracking. CUT. @Image4 Trevor, seated at the wheel and driving with his left hand, throws his right arm high out of the open jeep and waves it wildly back at the convoy, looking back over his shoulder and laughing; gold dust flies.
+[0:06.5-0:08.5] SHOT 5, close-up of the father, 85mm, side view, tracking. CUT. He laughs so hard his eyes fill with tears; he wipes one eye with the back of his hand and keeps smiling.
+[0:08.5-0:10] SHOT 6, medium close-up through the sedan's fully open passenger window, tracking. CUT. @Image2 Michael looks across at the father with a warm fatherly look and gives one slow nod: it is time.
+
+EMOTIONAL ARC: disbelief and joy (0-1.5) → pure fun (1.5-6.5) → laughter turning into tears (6.5-8.5) → a calm "it is time" (8.5-10). Never resets.
+AUDIO: diegetic only: engines, wind, tyres, the motorcycle passing, laughter. No music, no speech.
+TEXT: no text anywhere: no signs, no captions, no subtitles, no logos, no watermark.
+AVOID: a moving vehicle with nobody at the wheel, Trevor standing up in the jeep, extra people in any vehicle, passengers in the jeep, a hand passing through glass, anyone switching seats or windows, a closed window with someone waving through it, a side mirror, faces changing between shots, extra fingers, a character sheet or white background, slow motion, chaotic composition.</pre></div><div class="prompt long"><div class="prompt-h"><span>חלק 2 · הפרידה והתינוק (4:3, 10 שניות)</span><button class="copy" data-copy="p-b" type="button">העתיקו</button></div><pre id="p-b">VIDEO B, "The baby": 5 shots, 10 seconds, 4:3. It continues directly from video A on the same road at the same moment of the same sunset.
+REFERENCES: @Image1 = the father, @Image2 = Michael, @Image3 = Franklin, @Image4 = Trevor (identity sheets: use them only for faces, hair and clothes; never render a sheet, a grey studio background or a second copy of anyone). @Image5 = the canyon road (place and light only).
+GLOBAL LOOK: photoreal live-action feature film, 4:3, 24 fps real time. ARRI Alexa Mini, spherical primes, Kodak Portra 400 colour, fine film grain. Golden hour in the Los Angeles canyon hills: low warm sun behind the convoy as the key, warm bounce from the dry grass as the fill, a bright rim of light on hair and dust. Palette: warm gold, dusty amber, sky blue, the white of the convertible, the red of the jeep. Real skin with pores and a little sweat, no beauty filter, no CGI, no game look.
+CONTINUITY BIBLE (never changes): one two-lane canyon road, the convoy drives AWAY from the camera's left toward the right of the frame in every side shot. The father drives a white 1962 convertible, top down, red-brown leather seats, in the RIGHT lane; he sits on the LEFT side of his car, behind the wheel, alone in the front. Michael drives a black modern luxury sedan in the LEFT lane, exactly alongside the convertible; the sedan's front PASSENGER window, the one facing the father, is FULLY ROLLED DOWN, Michael sits in the sedan's driver seat and looks across through that open window; his hands always stay inside his own car. Franklin rides a dark green touring motorcycle and passes on the left. Trevor drives a faded red open-top 1980s jeep with a roll bar about 15 metres ahead: he SITS in the driver seat behind the steering wheel the whole time, his left hand on the wheel; he never stands up and the jeep never moves without him at the wheel. ONE PERSON PER VEHICLE: Trevor is ALONE in his jeep, seated at the wheel (nobody in the passenger seat or in the back), Michael is ALONE in his sedan, Franklin rides ALONE, the father is the only adult in the convertible. Eyelines: the father looks LEFT to Michael and Franklin, AHEAD to Trevor. The convertible has a normal interior rear-view mirror at the top centre of the windscreen frame, angled to show the back seat. The back seat is NOT visible until SHOT 3: then, strapped in behind the father, a grey rear-facing infant car seat with a sleeping baby in a tiny knitted hat, a small soft toy on the handle.
+CAST WARDROBE: @Image1 the father, 30, short dark-brown hair, warm brown eyes, light stubble, smile lines, a likeable normal guy, plain heather-grey t-shirt, gold wedding ring. @Image2 Michael, late 40s, dark hair combed back with grey temples, navy suit jacket open over a white open-collared shirt. @Image3 Franklin, about 25, very short black hair, short neat beard, dark blue short-sleeve button shirt over a white long-sleeve tee, thin gold chain. @Image4 Trevor, about 45, balding with messy dark hair on the sides, sunburnt, dotted CUT HERE neck tattoo, dirty off-white V-neck; lovable, never menacing.
+LOCATION: @Image5, a winding two-lane canyon road through dry golden hills, palm trees and power poles, the city skyline faint in the haze. No other place.
+SPEED: everyone drives at a steady 50 km/h, real time, no slow motion. The camera only tracks smoothly alongside or holds; one simple action per shot.
+
+SHOT BY SHOT:
+[0:00-0:02.5] SHOT 1, high wide shot from behind the convoy, tracking. At a junction with a stop sign, a side road turns off to the LEFT up into the hills. The motorcycle, the black sedan and the red jeep (Trevor alone in it, seated at the wheel, driving) all slow down and turn LEFT onto the side road one after the other; the white convertible keeps going STRAIGHT on the main road, alone. @Image4 Trevor, still seated and driving, raises his right arm high out of the jeep in a last goodbye.
+[0:02.5-0:04] SHOT 2, close-up of the father, side view, tracking. CUT. He glances left at the three vehicles disappearing up the side road; a small sad smile.
+[0:04-0:06] SHOT 3, extreme close-up of the interior rear-view mirror only, locked-off. CUT. The mirror shows the BACK SEAT, not his face: in it, the grey rear-facing infant car seat and the baby asleep in a tiny knitted hat.
+[0:06-0:08] SHOT 4, from the front of the car, looking back past the father's shoulder into the back seat. CUT. The father turns and looks at his sleeping baby; he smiles softly, one tear on his cheek, then turns back to the road.
+[0:08-0:10] SHOT 5, wide from high behind, tracking slowly. CUT. The white convertible drives alone down the straight road toward the low golden sun, getting smaller, dust settling behind it.
+
+EMOTIONAL ARC: the parting (0-2.5) → a little sadness (2.5-4) → surprise and warmth (4-6) → a quiet, happy, grown-up smile through tears (6-10). Never resets.
+AUDIO: diegetic only: engines, wind, tyres, the motorcycle passing, a baby's soft breathing in SHOTS 3 and 4. No music, no speech.
+TEXT: no text anywhere: no readable signs (the stop sign is seen from behind or too far to read), no captions, no subtitles, no logos, no watermark.
+AVOID: a moving vehicle with nobody at the wheel, Trevor standing up in the jeep, extra people in any vehicle, passengers in the jeep, a hand passing through glass, anyone switching seats or windows, a closed window with someone waving through it, a side mirror, faces changing between shots, extra fingers, a character sheet or white background, slow motion, chaotic composition.</pre></div>
+</div>
+<div class="shots c2"><figure><img alt="מייקל מנופף מהאוטו שלו" loading="lazy" src="../media/r_3.5.jpg"/><figcaption>מייקל מנופף מהחלון הפתוח</figcaption></figure><figure><img alt="הנהג צוחק עד דמעות" loading="lazy" src="../media/r_6.5.jpg"/><figcaption>צחוק שהופך לדמעות</figcaption></figure><figure><img alt="החבר'ה פונים שמאלה בצומת" loading="lazy" src="../media/r_9.jpg"/><figcaption>בצומת החבר'ה פונים שמאלה</figcaption></figure><figure><img alt="התינוק במראה" loading="lazy" src="../media/r_12.jpg"/><figcaption>הגילוי במראה</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">5</span><span class="tool">טיוטה ← FULL QUALITY</span><h3>קודם טיוטה, ואז Full Quality</h3>
+<p>תריצו כל סצנה כטיוטה ב-480p. זה מהיר וזול, אז אפשר לצפות, לתקן את הפרומפט ולהריץ שוב. רק כשהטייק יושב נכון, תשלחו אותו ל-<b>Full Quality</b> בקולבו. הוא מרנדר את אותו טייק מחדש ב-1080p נייטיב.</p><div class="note"><b>חשוב:</b> טיוטות שאתם מתכננים לסיים ב-Full Quality תיצרו רק עם רפרנסים של תמונות, בלי וידאו רפרנס.</div>
+</div>
+<div class="shots c2"><figure><img alt="הנהג מחייך" loading="lazy" src="../media/r_1.jpg"/><figcaption>הפריים הראשון, ב-1080p</figcaption></figure><figure><img alt="הקבריולט נוסע לבד לתוך השמש" loading="lazy" src="../media/r_14.5.jpg"/><figcaption>הוא ממשיך לנסוע לבד</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">6</span><span class="tool">CLAUDE · העריכה</span><h3>חותכים הדוק ומסיימים על mission passed</h3>
+<p>תחתכו כל שוט לשנייה או שתיים ותגיעו לתינוק מוקדם. ואז תסיימו בשפה של המשחק: ה-"mission passed" הצהוב האמיתי, עם צ'קליסט שמספר את הסיפור. נתתי ל-Claude לבנות אותו מחדש מצילומי מסך אמיתיים של המשחק.</p><div class="prompt"><div class="prompt-h"><span>פרומפט ל-Claude (צרפו 2-3 צילומי מסך אמיתיים)</span><button class="copy" data-copy="p-ui" type="button">העתיקו</button></div><pre id="p-ui">I attached real screenshots of the GTA V "mission passed" screen. Rebuild it as a transparent PNG overlay for my video, exactly like the game: trace the yellow "mission passed" lettering from the screenshot (don't use a similar font), the same yellow and the same dark box under it with a title row, three rows with white checkboxes and a "Completion - Gold 100%" row with the gold dot. My texts: title "The Last Ride", rows "13 Years with the Boys", "One Last Ride", "Became a Dad". Then put it on the last frame of my video with a short fade-in, and keep it inside Instagram's safe zone: nothing in the top 250 px, the bottom 420 px or the right-side icons of a 1080x1920 frame.</pre></div><div class="note"><b>מוזיקה:</b> ב-Instagram תבחרו את "See You Again" מספריית המוזיקה, מהשורה שמתאימה לסיום שלכם. זה השיר של כל הטרנד הזה.</div>
+</div>
+<div class="shots"><figure><img alt="mission passed מעל הכביש הריק" loading="lazy" src="../media/r_18.jpg"/><figcaption>"Became a Dad", עם וי</figcaption></figure></div>
+</div>
+</div></section>
+<section class="sec"><div class="wrap">
+<span class="eyebrow">תלמדו מהטייקים שלי</span>
+<h2>מה נשבר, <span class="grad-text">ומה תיקן את זה.</span></h2>
+<div class="miss"><div><b>ג'יפ בלי אף אחד על ההגה</b><p><span class="x">הבעיה:</span> "Trevor stands up and waves". הוא נעמד, והג'יפ המשיך לנסוע בלי אף אחד על ההגה.</p><p><span class="ok">הפתרון:</span> "he SITS at the wheel the whole time and waves with his right arm". תכתבו את כל הגוף, לא רק את התנועה.</p></div><div><b>יד שעוברת דרך הזכוכית</b><p><span class="x">הבעיה:</span> מייקל מנופף מאוטו עם חלונות סגורים. היד שלו עברה ישר דרך הזכוכית.</p><p><span class="ok">הפתרון:</span> תגידו איזה חלון פתוח עד הסוף, מי יושב איפה ובאיזה נתיב כל רכב. בן אדם אחד בכל רכב.</p></div><div><b>סיפור שאף אחד לא הבין</b><p><span class="x">הבעיה:</span> נער במושב האחורי ומראה צד שאף אחד לא הבין מה היא עושה שם.</p><p><span class="ok">הפתרון:</span> סיפור אחד פשוט: הנסיעה, הפרידה בצומת, התינוק במראה.</p></div></div>
+</div></section>
+<section class="final" id="start"><div class="wrap">
+<span class="eyebrow">תורכם</span>
+<h2>תעשו את <span class="grad-text">הנסיעה האחרונה שלכם.</span></h2>
+<p class="lead">GTA VI יוצא ב-19 בנובמבר. כל הכלים בעמוד הזה נמצאים בקולבו. תירשמו דרך הלינק שלי ותיקחו את ההנחה לחודש הראשון.</p>
+<a class="btn btn-grad" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">מתחילים בקולבו</a>
+<div class="codes"><button class="code" data-copytext="ORELLEVI50" type="button"><span><b>ORELLEVI50</b><br/><i>50% הנחה על החודש הראשון</i></span><span class="pill">העתיקו</span></button>
+<button class="code" data-copytext="ORELLEVI30" type="button"><span><b>ORELLEVI30</b><br/><i>30% הנחה ל-3 חודשים</i></span><span class="pill">העתיקו</span></button></div>
+<div class="steps3">
+<div><b>1. נרשמים</b>דרך <a href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">הלינק שלי</a> ומאשרים את העוגיות באתר.</div>
+<div><b>2. בוחרים מנוי חודשי</b>הקודים עובדים על הרכישה הראשונה.</div>
+<div><b>3. מכניסים את הקוד</b>בתשלום. אחר כך חוזרים לפה ומתחילים משלב 1.</div>
+</div>
+<p class="fine" style="margin-top:28px">עשיתם אחד? תייגו את <b>@leviorel</b> ואת <b>@kolbo.ai</b>, אני רוצה לראות.</p>
+</div></section>
+<footer><div class="wrap"><span>אוראל לוי · <a href="https://www.instagram.com/leviorel/" rel="noopener" target="_blank">@leviorel</a></span><span>The Last Ride · נוצר עם Kolbo AI · יצירה של מעריץ, בלי קשר ל-Rockstar Games</span></div></footer>
+<div class="toast" id="toast">הועתק</div>
+<script>
+const toast=document.getElementById('toast');let tt;
+function flash(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),1600)}
+async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}a.remove();return ok}}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const ok=await copyText(document.getElementById(b.dataset.copy).textContent);b.textContent=ok?'הועתק':'סמנו והעתיקו';b.classList.toggle('done',ok);flash(ok?'הפרומפט הועתק':'סמנו את הטקסט');setTimeout(()=>{b.textContent='העתקה';b.classList.remove('done')},1800)}));
+document.querySelectorAll('[data-copytext]').forEach(b=>b.addEventListener('click',async()=>{const ok=await copyText(b.dataset.copytext);flash(ok?b.dataset.copytext+' הועתק':'הקוד: '+b.dataset.copytext)}));
+const v=document.getElementById('ep'),s=document.getElementById('snd');
+s.addEventListener('click',()=>{v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}s.textContent=v.muted?'לחצו לסאונד':'הסאונד פועל'});
+</script>
+</body>
+</html>
