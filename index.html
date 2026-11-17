@@ -1,15 +1,16 @@
-<!doctype html>
-<html lang="en" dir="ltr">
+<!DOCTYPE html>
+
+<html dir="ltr" lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>The Last Ride · GTA AI Workflow</title>
-<meta name="description" content="How I made The Last Ride, an AI GTA farewell film: one last drive with Michael, Franklin and Trevor before GTA VI, start to finish in Kolbo. Every prompt, ready to copy.">
-<meta property="og:title" content="The Last Ride · GTA AI Workflow">
-<meta property="og:description" content="How I made The Last Ride, an AI GTA farewell film: one last drive with Michael, Franklin and Trevor before GTA VI, start to finish in Kolbo. Every prompt, ready to copy.">
-<meta property="og:image" content="media/poster_ride.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta content="How I made The Last Ride, an AI GTA farewell film: one last drive with Michael, Franklin and Trevor before GTA VI, start to finish in Kolbo. Every prompt, ready to copy." name="description"/>
+<meta content="The Last Ride · GTA AI Workflow" property="og:title"/>
+<meta content="How I made The Last Ride, an AI GTA farewell film: one last drive with Michael, Franklin and Trevor before GTA VI, start to finish in Kolbo. Every prompt, ready to copy." property="og:description"/>
+<meta content="media/poster_ride.jpg" property="og:image"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
   color-scheme:dark;
@@ -154,85 +155,83 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
 
 .shots.p34 img{aspect-ratio:3/4;object-fit:cover}
 </style>
-</head>
+<style>
+.langbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding-top:14px;padding-bottom:4px;position:relative;z-index:5}
+.langbar a{font:700 13px Rubik,sans-serif;letter-spacing:.04em;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--ink,#fff);text-decoration:none;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset}
+.langbar a.on{background:var(--paper,#f4efe6);color:var(--on-paper,#111)}
+.langnote{margin:0 0 26px}
+</style></head>
 <body>
 <div class="atmo"></div>
-
 <header class="bar"><div class="wrap">
-  <a class="me" href="https://www.instagram.com/leviorel/" target="_blank" rel="noopener"><img src="media/avatar.jpg" alt="Orel Levi"><span>Orel Levi<small>@leviorel · AI Content Creator</small></span></a>
-  <a class="btn btn-primary" href="https://app.kolbo.ai?via=orellevi" target="_blank" rel="noopener">Try Kolbo<span class="hide-s">&nbsp;· 50% off</span></a>
-</div></header>
-
+<a class="me" href="https://www.instagram.com/leviorel/" rel="noopener" target="_blank"><img alt="Orel Levi" src="media/avatar.jpg"/><span>Orel Levi<small>@leviorel · AI Content Creator</small></span></a>
+<a class="btn btn-primary" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">Try Kolbo<span class="hide-s"> · 50% off</span></a>
+</div></header><div class="langbar wrap"><a class="on" href="./" lang="en">EN</a><a class="" href="pt/" lang="pt">PT</a><a class="" href="es/" lang="es">ES</a><a class="" href="fr/" lang="fr">FR</a><a class="" href="ru/" lang="ru">RU</a></div>
 <section class="hero"><div class="wrap">
-  <div>
-    <span class="eyebrow">Free workflow · The Last Ride</span>
-    <h1>One last ride<br><span class="grad-text">before GTA VI.</span></h1>
-    <p class="lead">A grown-up gamer drives one last time with Michael, Franklin and Trevor. At the junction they turn left, he goes straight, and in the mirror his baby is asleep. This is exactly how I made it, all in Kolbo, every prompt ready to copy.</p>
-    <div class="cta-row">
-      <a class="btn btn-grad" href="#steps">Show me the workflow</a>
-      <a class="btn btn-ghost" href="https://app.kolbo.ai?via=orellevi" target="_blank" rel="noopener">Open Kolbo</a>
-    </div>
-    <div class="badges"><span class="badge"><b>20s</b> film</span><span class="badge"><b>2</b> prompts</span><span class="badge"><b>4:3</b> like a real movie</span><span class="badge">Made with <b>Kolbo AI</b></span></div>
-  </div>
-  <div class="phone">
-    <video id="ep" src="media/ride916.mp4" poster="media/poster_ride.jpg" autoplay muted loop playsinline preload="metadata"></video>
-    <button class="btn sound" id="snd" type="button">Tap for sound</button>
-  </div>
+<div>
+<span class="eyebrow">Free workflow · The Last Ride</span>
+<h1>One last ride<br/><span class="grad-text">before GTA VI.</span></h1>
+<p class="lead">A grown-up gamer drives one last time with Michael, Franklin and Trevor. At the junction they turn left, he goes straight, and in the mirror his baby is asleep. This is exactly how I made it, all in Kolbo, every prompt ready to copy.</p>
+<div class="cta-row">
+<a class="btn btn-grad" href="#steps">Show me the workflow</a>
+<a class="btn btn-ghost" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">Open Kolbo</a>
+</div>
+<div class="badges"><span class="badge"><b>20s</b> film</span><span class="badge"><b>2</b> prompts</span><span class="badge"><b>4:3</b> like a real movie</span><span class="badge">Made with <b>Kolbo AI</b></span></div>
+</div>
+<div class="phone">
+<video autoplay="" id="ep" loop="" muted="" playsinline="" poster="media/poster_ride.jpg" preload="metadata" src="media/ride916.mp4"></video>
+<button class="btn sound" id="snd" type="button">Tap for sound</button>
+</div>
 </div></section>
-
 <section class="sec"><div class="wrap">
-  <span class="eyebrow">The short version</span>
-  <h2>Two short runs, <span class="grad-text">one road, one sunset.</span></h2>
-  <p class="lead" style="max-width:60ch">The film is two Seedance 2.5 runs of 10 seconds each: the ride, then the goodbye and the baby. Both share the same locked blocks, so the road, the light and the faces match across the cut.</p>
-  <div class="tldr"><div><b>01</b><span>Turn the characters into real actors</span></div><div><b>02</b><span>Sheets for the boys and your hero</span></div><div><b>03</b><span>One empty road</span></div><div><b>04</b><span>Two runs, Full Quality, the ending</span></div></div>
-
-  <div class="offer">
-    <div class="row">
-      <div><h3>Everything here runs on Kolbo.</h3><p class="muted" style="margin:0">GPT Image, Nano Banana Pro and Seedance 2.5 in one place, with Full Quality for the final 1080p. Start with my discount:</p></div>
-      <div class="codes">
-        <button class="code" type="button" data-copytext="ORELLEVI50"><span><b>ORELLEVI50</b><br><i>50% off your first month</i></span><span class="pill">Copy</span></button>
-        <button class="code" type="button" data-copytext="ORELLEVI30"><span><b>ORELLEVI30</b><br><i>30% off for 3 months</i></span><span class="pill">Copy</span></button>
-      </div>
-    </div>
-    <p class="fine">Codes work on your first purchase of a monthly plan. Sign up through <a href="https://app.kolbo.ai?via=orellevi" target="_blank" rel="noopener">my link</a>, accept the cookies on Kolbo's site and enter the code at checkout.</p>
-  </div>
+<span class="eyebrow">The short version</span>
+<h2>Two short runs, <span class="grad-text">one road, one sunset.</span></h2>
+<p class="lead" style="max-width:60ch">The film is two Seedance 2.5 runs of 10 seconds each: the ride, then the goodbye and the baby. Both share the same locked blocks, so the road, the light and the faces match across the cut.</p>
+<div class="tldr"><div><b>01</b><span>Turn the characters into real actors</span></div><div><b>02</b><span>Sheets for the boys and your hero</span></div><div><b>03</b><span>One empty road</span></div><div><b>04</b><span>Two runs, Full Quality, the ending</span></div></div>
+<div class="offer">
+<div class="row">
+<div><h3>Everything here runs on Kolbo.</h3><p class="muted" style="margin:0">GPT Image, Nano Banana Pro and Seedance 2.5 in one place, with Full Quality for the final 1080p. Start with my discount:</p></div>
+<div class="codes">
+<button class="code" data-copytext="ORELLEVI50" type="button"><span><b>ORELLEVI50</b><br/><i>50% off your first month</i></span><span class="pill">Copy</span></button>
+<button class="code" data-copytext="ORELLEVI30" type="button"><span><b>ORELLEVI30</b><br/><i>30% off for 3 months</i></span><span class="pill">Copy</span></button>
+</div>
+</div>
+<p class="fine">Codes work on your first purchase of a monthly plan. Sign up through <a href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">my link</a>, accept the cookies on Kolbo's site and enter the code at checkout.</p>
+</div>
 </div></section>
-
 <section class="sec"><div class="wrap">
-  <span class="eyebrow">Before you start</span>
-  <h2>Three rules that <span class="grad-text">made it work.</span></h2>
-  <div class="rules"><div class="rule"><div class="n grad-text">1</div><h3>The feeling is 13 years</h3><p>We started playing as kids. Now some of us have kids of our own. That one line is the whole film, told with zero dialogue.</p></div><div class="rule"><div class="n grad-text">2</div><h3>Keep the story simple</h3><p>My first version had a teenager and a side mirror. Nobody understood it. One driver, three friends, one baby in the mirror. Anyone gets it in one watch.</p></div><div class="rule"><div class="n grad-text">3</div><h3>Locked blocks, short runs</h3><p>Split the film into short runs and paste the same blocks into each: look, continuity rules, cast, location, speed, audio, avoid. That's what keeps the two parts one film.</p></div></div>
+<span class="eyebrow">Before you start</span>
+<h2>Three rules that <span class="grad-text">made it work.</span></h2>
+<div class="rules"><div class="rule"><div class="n grad-text">1</div><h3>The feeling is 13 years</h3><p>We started playing as kids. Now some of us have kids of our own. That one line is the whole film, told with zero dialogue.</p></div><div class="rule"><div class="n grad-text">2</div><h3>Keep the story simple</h3><p>My first version had a teenager and a side mirror. Nobody understood it. One driver, three friends, one baby in the mirror. Anyone gets it in one watch.</p></div><div class="rule"><div class="n grad-text">3</div><h3>Locked blocks, short runs</h3><p>Split the film into short runs and paste the same blocks into each: look, continuity rules, cast, location, speed, audio, avoid. That's what keeps the two parts one film.</p></div></div>
 </div></section>
-
 <section class="sec" id="steps"><div class="wrap">
-  <span class="eyebrow">Step by step</span>
-  <h2>The full workflow, <span class="grad-text">in Kolbo.</span></h2>
-
-  <div class="step">
-    <div>
-      <span class="num">1</span><span class="tool">GPT IMAGE · IN KOLBO</span><h3>Turn the characters into real actors</h3>
-      <p>Upload a screenshot of each character from the game and ask for a real photograph of the same man, as if an actor were cast for the movie. Describe the face, hair and clothes you want to keep, and tell it to remove every trace of the game.</p><div class="prompt"><div class="prompt-h"><span>Game character → real actor</span><button class="copy" type="button" data-copy="p-cast">Copy</button></div><pre id="p-cast">Image 1 shows Franklin Clinton, the video game character from GTA V. Create a genuine photograph of him as a REAL living man, as if a real actor were cast for a live-action film, instantly recognisable as Franklin as he was in GTA V (2013): about 25 years old, slim athletic build, very short black hair, short neat beard, calm confident eyes. Wardrobe: a dark blue short-sleeve button shirt over a white long-sleeve tee, dark jeans. Expression: a relaxed cool half-smile. Remove every trace of the game model: no polygon planes, no painted texture, no plastic skin, no CGI. Real pores, real eyelids, real hairline, slight skin imperfections, subtle asymmetry, unretouched skin. Half-body portrait, 3:4, standing on a dry canyon road in the Los Angeles hills at golden-hour sunset, warm low backlight from the right, shot on ARRI Alexa, 50mm, f/2.8, Kodak Portra 400 look, natural colors, soft bokeh. Photoreal, no text, no logos.</pre></div><div class="note"><b>Tip:</b> keep them likeable. My first Trevor looked like a horror film villain. "Lovable, a little crazy, never menacing" fixed it.</div>
-    </div>
-    <div class="shots c2 p34"><figure><img src="media/game_franklin.jpg" alt="Franklin in the game" loading="lazy"><figcaption>In the game</figcaption></figure><figure><img src="media/real_franklin.jpg" alt="Franklin as a real man" loading="lazy"><figcaption>As a real actor</figcaption></figure><figure><img src="media/game_trevor.jpg" alt="Trevor in the game" loading="lazy"><figcaption>In the game</figcaption></figure><figure><img src="media/real_trevor.jpg" alt="Trevor as a real man" loading="lazy"><figcaption>As a real actor</figcaption></figure></div>
-  </div>
-  <div class="step">
-    <div>
-      <span class="num">2</span><span class="tool">NANO BANANA PRO · IN KOLBO</span><h3>Sheets for the boys and for your hero</h3>
-      <p>Give the photo you chose as the reference and ask for a sheet of the same person from several angles. This sheet is what the video model reads, and it is what keeps the same face in every shot.</p><div class="prompt"><div class="prompt-h"><span>Character sheet prompt (16:9, four panels)</span><button class="copy" type="button" data-copy="p-sheet">Copy</button></div><pre id="p-sheet">CHARACTER SHEET, 16:9, four panels side by side separated by thin white gutters, on a clean light warm-grey seamless studio background: (1) a tight head-and-shoulders portrait facing the lens, (2) head-and-shoulders three-quarter view turned to the left, (3) head-and-shoulders side profile facing left, (4) a full-body standing shot head to shoes, relaxed. The SAME person in all four panels: identical face, hair, skin and outfit. Expression in every panel: relaxed and friendly, a light natural smile with the mouth closed, warm open eyes. No text, no labels, no watermark. Images 1 and 2 show the SAME man: use them for his exact identity, the same face, the same short dark-brown hair, the same warm brown eyes, the same light stubble and the same smile lines. He is 30 years old. Wardrobe: a plain heather-grey crew-neck t-shirt, dark blue jeans, grey sneakers, a simple gold wedding ring. He is a likeable, healthy, normal, good-looking-in-an-everyday-way person: rested eyes, NO dark circles, NO tired or gloomy look, NO rough or criminal vibe, clean and tidy. Unretouched skin exactly as the camera sees it: visible pores, enlarged pores on the nose, fine lines, uneven skin tone with faint redness on the cheeks, oily shine on the forehead, stray eyebrow hairs, baby hairs, real asymmetry between the two sides of the face. No skin smoothing, no beauty filter, no plastic or waxy skin, no symmetrical "AI face", not a render, not CGI. Light: one large soft key light from the front-left at eye level plus a soft fill, even and flattering but real, true natural skin colours, no orange tint, no golden glow, no dramatic shadows. Shot on a full-frame camera, 85mm lens at f/5.6, real photograph, crisp, natural colours. NOT a stock photo, NOT retouched, NOT a 3D render, NOT CGI. EYEBROWS: two full, continuous, natural eyebrows on every person; NO scar through an eyebrow, NO gap, NO notch, NO shaved slit, NO bald patch in the brow. TEETH: normal, straight, healthy teeth on every person; NO crooked teeth, NO chipped tooth, NO gap tooth, NO missing tooth, NO yellowed teeth. Avoid: crooked teeth, chipped or missing teeth, eyebrow scar, eyebrow slit, gap in the eyebrow, extra fingers, duplicate faces, text, logos, blur on the face, sunglasses, perfect teeth, perfect symmetry, airbrushed skin, fashion-model bone structure, HDR glow.</pre></div><p style="margin-top:16px">Your hero is a normal, likeable guy. Ask for real skin and a friendly face, or the model makes him look tired and grim.</p>
-    </div>
-    <div class="shots "><figure><img src="media/sheet_dad.jpg" alt="The dad character sheet" loading="lazy"><figcaption>Your hero</figcaption></figure><figure><img src="media/sheet_michael.jpg" alt="Michael character sheet" loading="lazy"><figcaption>Same person in every panel. That's the whole point.</figcaption></figure></div>
-  </div>
-  <div class="step">
-    <div>
-      <span class="num">3</span><span class="tool">GPT IMAGE · IN KOLBO</span><h3>One empty road</h3>
-      <p>One image of the road with nobody on it, at the exact light you want: golden hour in the canyon hills. Cars, the motorcycle, the jeep and the baby seat are words in the prompt, not more images.</p><div class="prompt"><div class="prompt-h"><span>Location prompt</span><button class="copy" type="button" data-copy="p-loc">Copy</button></div><pre id="p-loc">Empty location photograph, no people, no cars. A two-lane winding asphalt road through dry golden hills in the Los Angeles canyons, faded yellow center lines, palm trees and power poles, the city skyline faint in the haze. Golden hour on a dry canyon road in the Los Angeles hills, low warm sun, dust in the air catching the light. Eye-level from the road, 24mm. Look: a frame from a big-budget Hollywood feature, shot on ARRI Alexa 65, fine 35mm film grain, natural colors, real textures, no retouching. No text, no logos, no watermark.</pre></div>
-    </div>
-    <div class="shots "><figure><img src="media/loc_road.jpg" alt="Empty canyon road at golden hour" loading="lazy"><figcaption>The location, empty</figcaption></figure></div>
-  </div>
-  <div class="step">
-    <div>
-      <span class="num">4</span><span class="tool">SEEDANCE 2.5 · IN KOLBO</span><h3>Two runs with the same locked blocks</h3>
-      <p>Two Seedance 2.5 runs, 10 seconds each, 4:3. Each prompt starts with the same blocks, then goes shot by shot. The continuity block says exactly who drives which car, in which lane, and which window is open.</p><div class="prompt long"><div class="prompt-h"><span>Part 1 · the ride (4:3, 10s)</span><button class="copy" type="button" data-copy="p-a">Copy</button></div><pre id="p-a">VIDEO A, "The ride": 6 shots, 10 seconds, 4:3.
+<span class="eyebrow">Step by step</span>
+<h2>The full workflow, <span class="grad-text">in Kolbo.</span></h2>
+<div class="step">
+<div>
+<span class="num">1</span><span class="tool">GPT IMAGE · IN KOLBO</span><h3>Turn the characters into real actors</h3>
+<p>Upload a screenshot of each character from the game and ask for a real photograph of the same man, as if an actor were cast for the movie. Describe the face, hair and clothes you want to keep, and tell it to remove every trace of the game.</p><div class="prompt"><div class="prompt-h"><span>Game character → real actor</span><button class="copy" data-copy="p-cast" type="button">Copy</button></div><pre id="p-cast">Image 1 shows Franklin Clinton, the video game character from GTA V. Create a genuine photograph of him as a REAL living man, as if a real actor were cast for a live-action film, instantly recognisable as Franklin as he was in GTA V (2013): about 25 years old, slim athletic build, very short black hair, short neat beard, calm confident eyes. Wardrobe: a dark blue short-sleeve button shirt over a white long-sleeve tee, dark jeans. Expression: a relaxed cool half-smile. Remove every trace of the game model: no polygon planes, no painted texture, no plastic skin, no CGI. Real pores, real eyelids, real hairline, slight skin imperfections, subtle asymmetry, unretouched skin. Half-body portrait, 3:4, standing on a dry canyon road in the Los Angeles hills at golden-hour sunset, warm low backlight from the right, shot on ARRI Alexa, 50mm, f/2.8, Kodak Portra 400 look, natural colors, soft bokeh. Photoreal, no text, no logos.</pre></div><div class="note"><b>Tip:</b> keep them likeable. My first Trevor looked like a horror film villain. "Lovable, a little crazy, never menacing" fixed it.</div>
+</div>
+<div class="shots c2 p34"><figure><img alt="Franklin in the game" loading="lazy" src="media/game_franklin.jpg"/><figcaption>In the game</figcaption></figure><figure><img alt="Franklin as a real man" loading="lazy" src="media/real_franklin.jpg"/><figcaption>As a real actor</figcaption></figure><figure><img alt="Trevor in the game" loading="lazy" src="media/game_trevor.jpg"/><figcaption>In the game</figcaption></figure><figure><img alt="Trevor as a real man" loading="lazy" src="media/real_trevor.jpg"/><figcaption>As a real actor</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">2</span><span class="tool">NANO BANANA PRO · IN KOLBO</span><h3>Sheets for the boys and for your hero</h3>
+<p>Give the photo you chose as the reference and ask for a sheet of the same person from several angles. This sheet is what the video model reads, and it is what keeps the same face in every shot.</p><div class="prompt"><div class="prompt-h"><span>Character sheet prompt (16:9, four panels)</span><button class="copy" data-copy="p-sheet" type="button">Copy</button></div><pre id="p-sheet">CHARACTER SHEET, 16:9, four panels side by side separated by thin white gutters, on a clean light warm-grey seamless studio background: (1) a tight head-and-shoulders portrait facing the lens, (2) head-and-shoulders three-quarter view turned to the left, (3) head-and-shoulders side profile facing left, (4) a full-body standing shot head to shoes, relaxed. The SAME person in all four panels: identical face, hair, skin and outfit. Expression in every panel: relaxed and friendly, a light natural smile with the mouth closed, warm open eyes. No text, no labels, no watermark. Images 1 and 2 show the SAME man: use them for his exact identity, the same face, the same short dark-brown hair, the same warm brown eyes, the same light stubble and the same smile lines. He is 30 years old. Wardrobe: a plain heather-grey crew-neck t-shirt, dark blue jeans, grey sneakers, a simple gold wedding ring. He is a likeable, healthy, normal, good-looking-in-an-everyday-way person: rested eyes, NO dark circles, NO tired or gloomy look, NO rough or criminal vibe, clean and tidy. Unretouched skin exactly as the camera sees it: visible pores, enlarged pores on the nose, fine lines, uneven skin tone with faint redness on the cheeks, oily shine on the forehead, stray eyebrow hairs, baby hairs, real asymmetry between the two sides of the face. No skin smoothing, no beauty filter, no plastic or waxy skin, no symmetrical "AI face", not a render, not CGI. Light: one large soft key light from the front-left at eye level plus a soft fill, even and flattering but real, true natural skin colours, no orange tint, no golden glow, no dramatic shadows. Shot on a full-frame camera, 85mm lens at f/5.6, real photograph, crisp, natural colours. NOT a stock photo, NOT retouched, NOT a 3D render, NOT CGI. EYEBROWS: two full, continuous, natural eyebrows on every person; NO scar through an eyebrow, NO gap, NO notch, NO shaved slit, NO bald patch in the brow. TEETH: normal, straight, healthy teeth on every person; NO crooked teeth, NO chipped tooth, NO gap tooth, NO missing tooth, NO yellowed teeth. Avoid: crooked teeth, chipped or missing teeth, eyebrow scar, eyebrow slit, gap in the eyebrow, extra fingers, duplicate faces, text, logos, blur on the face, sunglasses, perfect teeth, perfect symmetry, airbrushed skin, fashion-model bone structure, HDR glow.</pre></div><p style="margin-top:16px">Your hero is a normal, likeable guy. Ask for real skin and a friendly face, or the model makes him look tired and grim.</p>
+</div>
+<div class="shots"><figure><img alt="The dad character sheet" loading="lazy" src="media/sheet_dad.jpg"/><figcaption>Your hero</figcaption></figure><figure><img alt="Michael character sheet" loading="lazy" src="media/sheet_michael.jpg"/><figcaption>Same person in every panel. That's the whole point.</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">3</span><span class="tool">GPT IMAGE · IN KOLBO</span><h3>One empty road</h3>
+<p>One image of the road with nobody on it, at the exact light you want: golden hour in the canyon hills. Cars, the motorcycle, the jeep and the baby seat are words in the prompt, not more images.</p><div class="prompt"><div class="prompt-h"><span>Location prompt</span><button class="copy" data-copy="p-loc" type="button">Copy</button></div><pre id="p-loc">Empty location photograph, no people, no cars. A two-lane winding asphalt road through dry golden hills in the Los Angeles canyons, faded yellow center lines, palm trees and power poles, the city skyline faint in the haze. Golden hour on a dry canyon road in the Los Angeles hills, low warm sun, dust in the air catching the light. Eye-level from the road, 24mm. Look: a frame from a big-budget Hollywood feature, shot on ARRI Alexa 65, fine 35mm film grain, natural colors, real textures, no retouching. No text, no logos, no watermark.</pre></div>
+</div>
+<div class="shots"><figure><img alt="Empty canyon road at golden hour" loading="lazy" src="media/loc_road.jpg"/><figcaption>The location, empty</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">4</span><span class="tool">SEEDANCE 2.5 · IN KOLBO</span><h3>Two runs with the same locked blocks</h3>
+<p>Two Seedance 2.5 runs, 10 seconds each, 4:3. Each prompt starts with the same blocks, then goes shot by shot. The continuity block says exactly who drives which car, in which lane, and which window is open.</p><div class="prompt long"><div class="prompt-h"><span>Part 1 · the ride (4:3, 10s)</span><button class="copy" data-copy="p-a" type="button">Copy</button></div><pre id="p-a">VIDEO A, "The ride": 6 shots, 10 seconds, 4:3.
 REFERENCES: @Image1 = the father, @Image2 = Michael, @Image3 = Franklin, @Image4 = Trevor (identity sheets: use them only for faces, hair and clothes; never render a sheet, a grey studio background or a second copy of anyone). @Image5 = the canyon road (place and light only).
 GLOBAL LOOK: photoreal live-action feature film, 4:3, 24 fps real time. ARRI Alexa Mini, spherical primes, Kodak Portra 400 colour, fine film grain. Golden hour in the Los Angeles canyon hills: low warm sun behind the convoy as the key, warm bounce from the dry grass as the fill, a bright rim of light on hair and dust. Palette: warm gold, dusty amber, sky blue, the white of the convertible, the red of the jeep. Real skin with pores and a little sweat, no beauty filter, no CGI, no game look.
 CONTINUITY BIBLE (never changes): one two-lane canyon road, the convoy drives AWAY from the camera's left toward the right of the frame in every side shot. The father drives a white 1962 convertible, top down, red-brown leather seats, in the RIGHT lane; he sits on the LEFT side of his car, behind the wheel, alone in the front. Michael drives a black modern luxury sedan in the LEFT lane, exactly alongside the convertible; the sedan's front PASSENGER window, the one facing the father, is FULLY ROLLED DOWN, Michael sits in the sedan's driver seat and looks across through that open window; his hands always stay inside his own car. Franklin rides a dark green touring motorcycle and passes on the left. Trevor drives a faded red open-top 1980s jeep with a roll bar about 15 metres ahead: he SITS in the driver seat behind the steering wheel the whole time, his left hand on the wheel; he never stands up and the jeep never moves without him at the wheel. ONE PERSON PER VEHICLE: Trevor is ALONE in his jeep, seated at the wheel (nobody in the passenger seat or in the back), Michael is ALONE in his sedan, Franklin rides ALONE, the father is the only adult in the convertible. Eyelines: the father looks LEFT to Michael and Franklin, AHEAD to Trevor. The convertible has a normal interior rear-view mirror at the top centre of the windscreen frame, angled to show the back seat. THE BACK SEAT OF THE CONVERTIBLE IS NEVER IN FRAME IN THIS VIDEO.
@@ -251,7 +250,7 @@ SHOT BY SHOT:
 EMOTIONAL ARC: disbelief and joy (0-1.5) → pure fun (1.5-6.5) → laughter turning into tears (6.5-8.5) → a calm "it is time" (8.5-10). Never resets.
 AUDIO: diegetic only: engines, wind, tyres, the motorcycle passing, laughter. No music, no speech.
 TEXT: no text anywhere: no signs, no captions, no subtitles, no logos, no watermark.
-AVOID: a moving vehicle with nobody at the wheel, Trevor standing up in the jeep, extra people in any vehicle, passengers in the jeep, a hand passing through glass, anyone switching seats or windows, a closed window with someone waving through it, a side mirror, faces changing between shots, extra fingers, a character sheet or white background, slow motion, chaotic composition.</pre></div><div class="prompt long"><div class="prompt-h"><span>Part 2 · the goodbye and the baby (4:3, 10s)</span><button class="copy" type="button" data-copy="p-b">Copy</button></div><pre id="p-b">VIDEO B, "The baby": 5 shots, 10 seconds, 4:3. It continues directly from video A on the same road at the same moment of the same sunset.
+AVOID: a moving vehicle with nobody at the wheel, Trevor standing up in the jeep, extra people in any vehicle, passengers in the jeep, a hand passing through glass, anyone switching seats or windows, a closed window with someone waving through it, a side mirror, faces changing between shots, extra fingers, a character sheet or white background, slow motion, chaotic composition.</pre></div><div class="prompt long"><div class="prompt-h"><span>Part 2 · the goodbye and the baby (4:3, 10s)</span><button class="copy" data-copy="p-b" type="button">Copy</button></div><pre id="p-b">VIDEO B, "The baby": 5 shots, 10 seconds, 4:3. It continues directly from video A on the same road at the same moment of the same sunset.
 REFERENCES: @Image1 = the father, @Image2 = Michael, @Image3 = Franklin, @Image4 = Trevor (identity sheets: use them only for faces, hair and clothes; never render a sheet, a grey studio background or a second copy of anyone). @Image5 = the canyon road (place and light only).
 GLOBAL LOOK: photoreal live-action feature film, 4:3, 24 fps real time. ARRI Alexa Mini, spherical primes, Kodak Portra 400 colour, fine film grain. Golden hour in the Los Angeles canyon hills: low warm sun behind the convoy as the key, warm bounce from the dry grass as the fill, a bright rim of light on hair and dust. Palette: warm gold, dusty amber, sky blue, the white of the convertible, the red of the jeep. Real skin with pores and a little sweat, no beauty filter, no CGI, no game look.
 CONTINUITY BIBLE (never changes): one two-lane canyon road, the convoy drives AWAY from the camera's left toward the right of the frame in every side shot. The father drives a white 1962 convertible, top down, red-brown leather seats, in the RIGHT lane; he sits on the LEFT side of his car, behind the wheel, alone in the front. Michael drives a black modern luxury sedan in the LEFT lane, exactly alongside the convertible; the sedan's front PASSENGER window, the one facing the father, is FULLY ROLLED DOWN, Michael sits in the sedan's driver seat and looks across through that open window; his hands always stay inside his own car. Franklin rides a dark green touring motorcycle and passes on the left. Trevor drives a faded red open-top 1980s jeep with a roll bar about 15 metres ahead: he SITS in the driver seat behind the steering wheel the whole time, his left hand on the wheel; he never stands up and the jeep never moves without him at the wheel. ONE PERSON PER VEHICLE: Trevor is ALONE in his jeep, seated at the wheel (nobody in the passenger seat or in the back), Michael is ALONE in his sedan, Franklin rides ALONE, the father is the only adult in the convertible. Eyelines: the father looks LEFT to Michael and Franklin, AHEAD to Trevor. The convertible has a normal interior rear-view mirror at the top centre of the windscreen frame, angled to show the back seat. The back seat is NOT visible until SHOT 3: then, strapped in behind the father, a grey rear-facing infant car seat with a sleeping baby in a tiny knitted hat, a small soft toy on the handle.
@@ -270,51 +269,47 @@ EMOTIONAL ARC: the parting (0-2.5) → a little sadness (2.5-4) → surprise and
 AUDIO: diegetic only: engines, wind, tyres, the motorcycle passing, a baby's soft breathing in SHOTS 3 and 4. No music, no speech.
 TEXT: no text anywhere: no readable signs (the stop sign is seen from behind or too far to read), no captions, no subtitles, no logos, no watermark.
 AVOID: a moving vehicle with nobody at the wheel, Trevor standing up in the jeep, extra people in any vehicle, passengers in the jeep, a hand passing through glass, anyone switching seats or windows, a closed window with someone waving through it, a side mirror, faces changing between shots, extra fingers, a character sheet or white background, slow motion, chaotic composition.</pre></div>
-    </div>
-    <div class="shots c2"><figure><img src="media/r_3.5.jpg" alt="Michael waves from his car" loading="lazy"><figcaption>Michael waves through the open window</figcaption></figure><figure><img src="media/r_6.5.jpg" alt="The driver laughs to tears" loading="lazy"><figcaption>Laughter turning into tears</figcaption></figure><figure><img src="media/r_9.jpg" alt="The boys turn left at the junction" loading="lazy"><figcaption>At the junction the boys turn left</figcaption></figure><figure><img src="media/r_12.jpg" alt="The baby in the mirror" loading="lazy"><figcaption>The reveal in the mirror</figcaption></figure></div>
-  </div>
-  <div class="step">
-    <div>
-      <span class="num">5</span><span class="tool">DRAFT → FULL QUALITY</span><h3>Draft first, then Full Quality</h3>
-      <p>Run every scene as a 480p draft. It's fast and cheap, so you can watch, fix the prompt and run again. Only when the take is right, send it to <b>Full Quality</b> in Kolbo. It renders the same take again in native 1080p.</p><div class="note"><b>Important:</b> drafts you plan to finish in Full Quality should be made with image references only, no reference video.</div>
-    </div>
-    <div class="shots c2"><figure><img src="media/r_1.jpg" alt="The driver grins" loading="lazy"><figcaption>The first frame, in 1080p</figcaption></figure><figure><img src="media/r_14.5.jpg" alt="The convertible drives alone into the sun" loading="lazy"><figcaption>He drives on alone</figcaption></figure></div>
-  </div>
-  <div class="step">
-    <div>
-      <span class="num">6</span><span class="tool">CLAUDE · THE EDIT</span><h3>Cut it tight and end on mission passed</h3>
-      <p>Cut every shot to one or two seconds and get to the baby early. Then end in the game's own language: the real yellow "mission passed" with a checklist that tells the story. I had Claude rebuild it from real screenshots of the game.</p><div class="prompt"><div class="prompt-h"><span>Prompt for Claude (attach 2-3 real screenshots)</span><button class="copy" type="button" data-copy="p-ui">Copy</button></div><pre id="p-ui">I attached real screenshots of the GTA V "mission passed" screen. Rebuild it as a transparent PNG overlay for my video, exactly like the game: trace the yellow "mission passed" lettering from the screenshot (don't use a similar font), the same yellow and the same dark box under it with a title row, three rows with white checkboxes and a "Completion - Gold 100%" row with the gold dot. My texts: title "The Last Ride", rows "13 Years with the Boys", "One Last Ride", "Became a Dad". Then put it on the last frame of my video with a short fade-in, and keep it inside Instagram's safe zone: nothing in the top 250 px, the bottom 420 px or the right-side icons of a 1080x1920 frame.</pre></div><div class="note"><b>Music:</b> on Instagram pick "See You Again" from the music library, from the line that fits your ending. It's the song of this whole trend.</div>
-    </div>
-    <div class="shots "><figure><img src="media/r_18.jpg" alt="Mission passed over the empty road" loading="lazy"><figcaption>"Became a Dad", checked</figcaption></figure></div>
-  </div>
+</div>
+<div class="shots c2"><figure><img alt="Michael waves from his car" loading="lazy" src="media/r_3.5.jpg"/><figcaption>Michael waves through the open window</figcaption></figure><figure><img alt="The driver laughs to tears" loading="lazy" src="media/r_6.5.jpg"/><figcaption>Laughter turning into tears</figcaption></figure><figure><img alt="The boys turn left at the junction" loading="lazy" src="media/r_9.jpg"/><figcaption>At the junction the boys turn left</figcaption></figure><figure><img alt="The baby in the mirror" loading="lazy" src="media/r_12.jpg"/><figcaption>The reveal in the mirror</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">5</span><span class="tool">DRAFT → FULL QUALITY</span><h3>Draft first, then Full Quality</h3>
+<p>Run every scene as a 480p draft. It's fast and cheap, so you can watch, fix the prompt and run again. Only when the take is right, send it to <b>Full Quality</b> in Kolbo. It renders the same take again in native 1080p.</p><div class="note"><b>Important:</b> drafts you plan to finish in Full Quality should be made with image references only, no reference video.</div>
+</div>
+<div class="shots c2"><figure><img alt="The driver grins" loading="lazy" src="media/r_1.jpg"/><figcaption>The first frame, in 1080p</figcaption></figure><figure><img alt="The convertible drives alone into the sun" loading="lazy" src="media/r_14.5.jpg"/><figcaption>He drives on alone</figcaption></figure></div>
+</div>
+<div class="step">
+<div>
+<span class="num">6</span><span class="tool">CLAUDE · THE EDIT</span><h3>Cut it tight and end on mission passed</h3>
+<p>Cut every shot to one or two seconds and get to the baby early. Then end in the game's own language: the real yellow "mission passed" with a checklist that tells the story. I had Claude rebuild it from real screenshots of the game.</p><div class="prompt"><div class="prompt-h"><span>Prompt for Claude (attach 2-3 real screenshots)</span><button class="copy" data-copy="p-ui" type="button">Copy</button></div><pre id="p-ui">I attached real screenshots of the GTA V "mission passed" screen. Rebuild it as a transparent PNG overlay for my video, exactly like the game: trace the yellow "mission passed" lettering from the screenshot (don't use a similar font), the same yellow and the same dark box under it with a title row, three rows with white checkboxes and a "Completion - Gold 100%" row with the gold dot. My texts: title "The Last Ride", rows "13 Years with the Boys", "One Last Ride", "Became a Dad". Then put it on the last frame of my video with a short fade-in, and keep it inside Instagram's safe zone: nothing in the top 250 px, the bottom 420 px or the right-side icons of a 1080x1920 frame.</pre></div><div class="note"><b>Music:</b> on Instagram pick "See You Again" from the music library, from the line that fits your ending. It's the song of this whole trend.</div>
+</div>
+<div class="shots"><figure><img alt="Mission passed over the empty road" loading="lazy" src="media/r_18.jpg"/><figcaption>"Became a Dad", checked</figcaption></figure></div>
+</div>
 </div></section>
-
 <section class="sec"><div class="wrap">
-  <span class="eyebrow">Learn from my takes</span>
-  <h2>What broke, <span class="grad-text">and what fixed it.</span></h2>
-  <div class="miss"><div><b>A jeep with nobody driving</b><p><span class="x">Broke:</span> "Trevor stands up and waves". He stood up, and the jeep kept going with nobody at the wheel.</p><p><span class="ok">Fixed:</span> "he SITS at the wheel the whole time and waves with his right arm". Write the whole body, not only the gesture.</p></div><div><b>A hand through the glass</b><p><span class="x">Broke:</span> Michael waving from a car with the windows up. His hand went straight through the glass.</p><p><span class="ok">Fixed:</span> say which window is fully open, who sits where and which lane each car is in. One person per vehicle.</p></div><div><b>A story nobody got</b><p><span class="x">Broke:</span> a teenager in the back and a side mirror that made no sense.</p><p><span class="ok">Fixed:</span> one simple story: the ride, the goodbye at the junction, the baby in the mirror.</p></div></div>
+<span class="eyebrow">Learn from my takes</span>
+<h2>What broke, <span class="grad-text">and what fixed it.</span></h2>
+<div class="miss"><div><b>A jeep with nobody driving</b><p><span class="x">Broke:</span> "Trevor stands up and waves". He stood up, and the jeep kept going with nobody at the wheel.</p><p><span class="ok">Fixed:</span> "he SITS at the wheel the whole time and waves with his right arm". Write the whole body, not only the gesture.</p></div><div><b>A hand through the glass</b><p><span class="x">Broke:</span> Michael waving from a car with the windows up. His hand went straight through the glass.</p><p><span class="ok">Fixed:</span> say which window is fully open, who sits where and which lane each car is in. One person per vehicle.</p></div><div><b>A story nobody got</b><p><span class="x">Broke:</span> a teenager in the back and a side mirror that made no sense.</p><p><span class="ok">Fixed:</span> one simple story: the ride, the goodbye at the junction, the baby in the mirror.</p></div></div>
 </div></section>
-
 <section class="final" id="start"><div class="wrap">
-  <span class="eyebrow">Your turn</span>
-  <h2>Take your <span class="grad-text">last ride.</span></h2>
-  <p class="lead">GTA VI is out on November 19. Every tool on this page lives in Kolbo. Sign up through my link and take the discount for your first month.</p>
-  <a class="btn btn-grad" href="https://app.kolbo.ai?via=orellevi" target="_blank" rel="noopener">Start on Kolbo</a>
-  <div class="codes">
-    <button class="code" type="button" data-copytext="ORELLEVI50"><span><b>ORELLEVI50</b><br><i>50% off your first month</i></span><span class="pill">Copy</span></button>
-    <button class="code" type="button" data-copytext="ORELLEVI30"><span><b>ORELLEVI30</b><br><i>30% off for 3 months</i></span><span class="pill">Copy</span></button>
-  </div>
-  <div class="steps3">
-    <div><b>1. Sign up</b>Through <a href="https://app.kolbo.ai?via=orellevi" target="_blank" rel="noopener">my link</a> and accept the cookies on the site.</div>
-    <div><b>2. Pick a monthly plan</b>The codes work on your first purchase.</div>
-    <div><b>3. Enter the code</b>At checkout. Then come back here and start with step 1.</div>
-  </div>
-  <p class="fine" style="margin-top:28px">Made one? Tag <b>@leviorel</b> and <b>@kolbo.ai</b>, I want to see it.</p>
+<span class="eyebrow">Your turn</span>
+<h2>Take your <span class="grad-text">last ride.</span></h2>
+<p class="lead">GTA VI is out on November 19. Every tool on this page lives in Kolbo. Sign up through my link and take the discount for your first month.</p>
+<a class="btn btn-grad" href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">Start on Kolbo</a>
+<div class="codes">
+<button class="code" data-copytext="ORELLEVI50" type="button"><span><b>ORELLEVI50</b><br/><i>50% off your first month</i></span><span class="pill">Copy</span></button>
+<button class="code" data-copytext="ORELLEVI30" type="button"><span><b>ORELLEVI30</b><br/><i>30% off for 3 months</i></span><span class="pill">Copy</span></button>
+</div>
+<div class="steps3">
+<div><b>1. Sign up</b>Through <a href="https://app.kolbo.ai?via=orellevi" rel="noopener" target="_blank">my link</a> and accept the cookies on the site.</div>
+<div><b>2. Pick a monthly plan</b>The codes work on your first purchase.</div>
+<div><b>3. Enter the code</b>At checkout. Then come back here and start with step 1.</div>
+</div>
+<p class="fine" style="margin-top:28px">Made one? Tag <b>@leviorel</b> and <b>@kolbo.ai</b>, I want to see it.</p>
 </div></section>
-
-<footer><div class="wrap"><span>Orel Levi · <a href="https://www.instagram.com/leviorel/" target="_blank" rel="noopener">@leviorel</a></span><span>The Last Ride · Made with Kolbo AI · Fan-made, not affiliated with Rockstar Games</span></div></footer>
+<footer><div class="wrap"><span>Orel Levi · <a href="https://www.instagram.com/leviorel/" rel="noopener" target="_blank">@leviorel</a></span><span>The Last Ride · Made with Kolbo AI · Fan-made, not affiliated with Rockstar Games</span></div></footer>
 <div class="toast" id="toast">Copied</div>
-
 <script>
 const toast=document.getElementById('toast');let tt;
 function flash(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),1600)}
